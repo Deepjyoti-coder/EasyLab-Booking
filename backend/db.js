@@ -1,12 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/easylab';
-const DATA_DIR = path.resolve('backend/data');
+const DATA_DIR = path.join(__dirname, 'data');
 const JSON_DB_PATH = path.join(DATA_DIR, 'db.json');
 
 let isMongoConnected = false;
